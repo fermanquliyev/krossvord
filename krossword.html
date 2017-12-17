@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Krossvord</title>
+	<style>
+	body{
+		background-image:linear-gradient(#6DBDD6,#FFE658);
+		
+		background-size: cover;
+	}
+h1{
+text-align:center;
+}
+.krossvord  {
+  border-collapse:collapse;
+  border-spacing:0;
+  margin: 0 auto;
+  -webkit-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.75);
+-moz-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.75);
+box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.75);
+  }
+.krossvord td{
+  padding:0;
+  border:1px solid;
+  width:40px;
+  height:40px;
+  }
+
+input{
+  width:100%;
+  height:100%;
+  border: 0px solid;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  font-size:20px;
+}
+input:disabled{
+  background: #909090;
+}
+p{
+	font-size: 20px;
+}
+button{
+	font-size: 20px;
+}
+	</style>
+
+
+</head>
+<body>
+<h1>Krossvord</h1>
+<table class="krossvord">
+  <tr>
+    <td><input class="soz1" type="text" maxlength="1" placeholder="1"></td>
+    <td><input class="soz1" type="text" maxlength="1"></td>
+    <td><input class="soz1 soz5" type="text" maxlength="1" placeholder="5"></td>
+    <td><input class="soz1" type="text" maxlength="1"></td>
+    <td><input class="soz1 soz2" type="text" maxlength="1" placeholder="2"></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input type="text" maxlength="1" disabled></td>
+  </tr>
+  <tr>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input class="soz5" type="text" maxlength="1"></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input class="soz2" type="text" maxlength="1"></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input type="text" maxlength="1" disabled></td>
+  </tr>
+  <tr>
+    <td><input class="soz4" type="text" maxlength="1" placeholder="4"></td>
+    <td><input class="soz4" type="text" maxlength="1"></td>
+    <td><input class="soz4 soz5" type="text" maxlength="1"></td>
+    <td><input class="soz4" type="text" maxlength="1"></td>
+    <td><input class="soz2 soz4" type="text" maxlength="1"></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input type="text" maxlength="1" disabled></td>
+  </tr>
+  <tr>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input class="soz5" type="text" maxlength="1"></td>
+    <td><input type="text" maxlength="1" disabled></td>
+    <td><input class="soz2 soz3" type="text" maxlength="1" placeholder="3"></td>
+    <td><input class="soz3" type="text" maxlength="1"></td>
+    <td><input class="soz3" type="text" maxlength="1"></td>
+    <td><input class="soz3" type="text" maxlength="1"></td>
+  </tr>
+  <tr>
+    <td><input type="text"	maxlength="1" disabled></td>
+    <td><input type="text"	maxlength="1" disabled></td>
+    <td><input class="soz5" type="text"	maxlength="1"></td>
+    <td><input type="text"	maxlength="1" disabled></td>
+    <td><input class="soz2" type="text"	maxlength="1"></td>
+    <td><input type="text"	maxlength="1"disabled></td>
+    <td><input type="text"	maxlength="1"disabled></td>
+    <td><input type="text"	maxlength="1"disabled></td>
+  </tr>
+</table>
+<p>
+  Soldan saga:
+  <br>
+  1. Goruserken isletdiyimiz soz
+  <br>
+  3. Meyvə
+  <br>
+  4.Sulh
+</p>
+<p>
+  Yuxaridan asagi:
+  <br>
+  2. Huri - ?
+  <br>
+  5.Azerbaycanda rayon
+</p>
+	
+	<button id="check">Cavabi yoxla</button>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script>
+
+		$("input").keypress(function(){
+			var nextInput = $(this).parent().next().children("input");
+			nextInput.focus();
+			});
+
+			$("input").keydown(function(e){
+			if(e.which==8){
+			$(this).val("");
+			$(this).css("background","white");
+			var previousInput = $(this).parent().prev().children("input");
+			previousInput.focus();
+			}
+			});
+
+			$("input").keydown(function(e){
+			if(e.which==37){
+			var previousInput = $(this).parent().prev().children("input");
+			previousInput.focus();
+			}
+			});
+
+			$("input").keydown(function(e){
+			if(e.which==39){
+			var nextInput = $(this).parent().next().children("input");
+			nextInput.focus();
+			}
+			});
+
+			var sozler = {soz1:"salam", soz2:"masin",soz3:"inam",soz4:"baris",soz5:"lerik"};
+
+			function yoxla(myobject){
+				//var correct = false;
+				for(key in myobject){
+					var cavab="";
+					$("."+key).each(function(){
+						 cavab += $(this).val();
+					});
+					// alert(cavab);
+					if(cavab==myobject[key]){
+						correct=true;
+					}
+					else correct=false;
+					if(correct==true){
+						$("."+key).each(function(){
+						 $(this).css("background","green");
+					});
+					}
+					else{
+						$("."+key).each(function(){
+						 $(this).css("background","red");
+						});
+					}
+					}
+			};
+
+			$("#check").click(function(){
+				yoxla(sozler);
+			});
+
+
+
+	</script>
+</body>
+</html>
