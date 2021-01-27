@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Krossvord</title>
+	<title>Krossword</title>
 	<style>
 	body{
 		background-image:linear-gradient(#6DBDD6,#FFE658);
@@ -52,7 +52,7 @@ button{
 
 </head>
 <body>
-<h1>Krossvord</h1>
+<h1>Krossword</h1>
 <table class="krossvord">
   <tr>
     <td><input class="soz1" type="text" maxlength="1" placeholder="1"></td>
@@ -106,9 +106,8 @@ button{
   </tr>
 </table>
 <p>
-<strong>*Xüsusi isimlər varsa ilk hərfini böyük yazın</strong>
-<br> <br>
-  Soldan saga:
+<strong>*If there is proper nouns write it's first letter as capital.</strong>
+<bLeft to right:
   <br>
   1. Görüşərkən işlətdiyimiz söz
   <br>
@@ -117,14 +116,14 @@ button{
   4. Ali təhsilli vətəndaşın əsgərlik müddəti
 </p>
 <p>
-  Yuxaridan asagi:
+  Top to bottom:
   <br>
   2. Huri - ?
   <br>
   5. Janr
 </p>
 	
-	<button id="check">Cavabi yoxla</button>
+	<button id="check">Check the answers</button>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
@@ -157,27 +156,23 @@ button{
 			}
 			});
 
-			var sozler = {soz1:"salam", soz2:"mələk",soz3:"ərik",soz4:"biril",soz5:"lirik"};
+			var words = {soz1:"salam", soz2:"mələk",soz3:"ərik",soz4:"biril",soz5:"lirik"};
 
-			function yoxla(myobject){
+			function check(myobject){
 				//var correct = false;
 				for(key in myobject){
-					var cavab="";
+					var answer="";
 					$("."+key).each(function(){
 						 cavab += $(this).val();
 					});
 					// alert(cavab);
-					if(cavab==myobject[key]){
-						correct=true;
-					}
-					else correct=false;
-					if(correct==true){
+					if(answer==myobject[key]){
 						$("."+key).each(function(){
 						 $(this).css("background","green");
 					});
 					}
-					else{
-						$("."+key).each(function(){
+					else {
+					$("."+key).each(function(){
 						 $(this).css("background","red");
 						});
 					}
@@ -185,7 +180,7 @@ button{
 			};
 
 			$("#check").click(function(){
-				yoxla(sozler);
+				check(words);
 			});
 
 
